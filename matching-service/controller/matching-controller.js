@@ -4,8 +4,8 @@ import {fetchCategories} from '../internal-services/question-service.js';
 
 
 const redis = new Redis({
-    host: 'localhost',
-    port: 6379,
+    host: process.env.REDIS_HOST || "localhost",
+    port: process.env.REDIS_PORT || 6379,
   });
 
 const CHECK_INTERVAL = 1000; // interval to run schedule matching

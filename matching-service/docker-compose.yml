@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+    matching-service:
+        build: .
+        ports:
+            - "3006:3006"
+        depends_on:
+            - redis
+            - question-service
+
+
+    question-service:
+        build: ../question-service
+        ports:
+            - "3002:3002"
+  
+    redis:
+        image: redis
+        ports:
+            - "6379:6379"
+        volumes:
+            - redis_data:/data
+
+volumes:
+    redis_data:
