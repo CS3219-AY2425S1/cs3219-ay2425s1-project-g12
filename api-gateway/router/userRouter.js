@@ -21,7 +21,7 @@ userRouter.post("/", async (req, res) => {
 });
 
 // Get user
-userRouter.get("/:userId", verifyAccessToken, async (req, res) => {
+userRouter.get("/:userId", async (req, res) => {
     try {
         const { userId } = req.params;
         const response = await axios.get(`${USER_SERVICE}/users/${userId}`, {
@@ -36,7 +36,7 @@ userRouter.get("/:userId", verifyAccessToken, async (req, res) => {
 });
 
 // Get all users
-userRouter.get("/", verifyAccessToken, verifyIsAdmin, async (req, res) => {
+userRouter.get("/", async (req, res) => {
     try {
         const response = await axios.get(`${USER_SERVICE}/users`, {
             headers: req.headers,
@@ -52,16 +52,14 @@ userRouter.get("/", verifyAccessToken, verifyIsAdmin, async (req, res) => {
 // Update user profile
 userRouter.patch(
     "/:userId",
-    verifyAccessToken,
-    verifyIsOwnerOrAdmin,
     async (req, res) => {
         try {
             const { userId } = req.params;
             const response = await axios.patch(
                 `${USER_SERVICE}/users/${userId}`,
+                req.body,
                 {
-                    headers: req.headers,
-                    body: req.body,
+                    headers: req.headers
                 }
             );
             res.status(response.status).json(response.data);
@@ -76,16 +74,14 @@ userRouter.patch(
 // Update user privilege
 userRouter.patch(
     "/:userId/privilege",
-    verifyAccessToken,
-    verifyIsAdmin,
     async (req, res) => {
         try {
             const { userId } = req.params;
             const response = await axios.patch(
-                `${USER_SERVICE}/users/${userId}/privilege`,
+                `${USER_SERVICE}/users/${userId}`,
+                req.body,
                 {
-                    headers: req.headers,
-                    body: req.body,
+                    headers: req.headers
                 }
             );
             res.status(response.status).json(response.data);
@@ -100,8 +96,6 @@ userRouter.patch(
 // Delete user
 userRouter.delete(
     "/:userId",
-    verifyAccessToken,
-    verifyIsOwnerOrAdmin,
     async (req, res) => {
         try {
             const { userId } = req.params;
@@ -109,7 +103,7 @@ userRouter.delete(
                 `${USER_SERVICE}/users/${userId}`,
                 {
                     headers: req.headers,
-                    body: req.body,
+                    data: req.body 
                 }
             );
             res.status(response.status).json(response.data);

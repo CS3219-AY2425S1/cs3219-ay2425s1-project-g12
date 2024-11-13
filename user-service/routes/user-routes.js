@@ -12,16 +12,16 @@ import { verifyAccessToken, verifyIsAdmin, verifyIsOwnerOrAdmin } from "../middl
 
 const router = express.Router();
 
-router.get("/", verifyAccessToken, verifyIsAdmin, getAllUsers);
+router.get("/", getAllUsers);
 
-router.patch("/:id/privilege", verifyAccessToken, verifyIsAdmin, updateUserPrivilege);
+router.patch("/:id/privilege", updateUserPrivilege);
 
 router.post("/", createUser);
 
-router.get("/:id", verifyAccessToken, verifyIsOwnerOrAdmin, getUser);
+router.get("/:id", getUser);
 
-router.patch("/:id", verifyAccessToken, verifyIsOwnerOrAdmin, updateUser);
+router.patch("/:id", updateUser);
 
-router.delete("/:id", verifyAccessToken, verifyIsOwnerOrAdmin, deleteUser);
+router.delete("/:id", deleteUser);
 
 export default router;

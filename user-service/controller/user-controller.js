@@ -100,7 +100,6 @@ export async function updateUser(req, res) {
           return res.status(409).json({ message: "old password is wrong" });
         }
       }
-
       let hashedPassword;
       if (password) {
         const salt = bcrypt.genSaltSync(10);
