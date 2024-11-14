@@ -1,0 +1,2 @@
+# Ignore modules to prevent duplicate dependency
+node_modules

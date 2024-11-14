@@ -1,0 +1,21 @@
+.question-panel {
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 10px;
+    padding-top: 10px;
+
+    .question {
+        border: 3px solid #9CDDDB;
+    }
+}
+
+.blue-link {
+    color: #9CDDDB;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.blue-link:hover {
+    color: white;
+    text-decoration: none;
+}
+

@@ -1,0 +1,10 @@
+.question-list-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px 50px 50px 50px;
+}
+
+.all-questions-title {
+    margin-top: 10px;
+}
